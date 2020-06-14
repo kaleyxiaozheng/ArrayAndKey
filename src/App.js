@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Titlelabel } from './Label';
+import { ComponentList } from './ComponentList';
+import { Form } from './Form';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+ class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      numbers: []
+    }
+  }
+
+  updateArray = (value) => {
+    let newArray=[];
+    let j = 1;
+    for(let i = 0; i < value; i++){
+      newArray.push(j+i);
+    }
+    this.setState({numbers: newArray});
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Titlelabel title="Key and Array" />
+        <Form onClick={this.updateArray}/>
+        <ComponentList numbers={this.state.numbers} />
+      </div>
+    );
+  }
 }
 
 export default App;
